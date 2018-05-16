@@ -15,4 +15,30 @@ __email__ = "manson.li3307@gmail.com"
 class EventComponent(base.BaseComponent):
     """Component dealing with all user related matters"""
 
-    # TODO
+    def subscribe_add(self, **kwargs):
+        """
+        订阅在线状态事件
+        """
+        util.require_keys(kwargs, ['accid', 'eventType', 'publisherAccids', 'ttl'])
+        return self.post_request('/event/subscribe/add.action', data=kwargs)
+
+    def subscribe_delete(self, **kwargs):
+        """
+        取消在线状态事件订阅
+        """
+        util.require_keys(kwargs, ['accid', 'eventType', 'publisherAccids'])
+        return self.post_request('/event/subscribe/delete.action', data=kwargs)
+
+    def subscribe_batch_delete(self, **kwargs):
+        """
+        取消全部在线状态事件订阅
+        """
+        util.require_keys(kwargs, ['accid', 'eventType'])
+        return self.post_request('/event/subscribe/batchdel.action', data=kwargs)
+
+    def subscribe_query(self, **kwargs):
+        """
+        查询在线状态事件订阅关系
+        """
+        util.require_keys(kwargs, ['accid', 'eventType', 'publisherAccids'])
+        return self.post_request('/event/subscribe/query.action', data=kwargs)
