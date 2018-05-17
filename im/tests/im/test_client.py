@@ -24,7 +24,7 @@ def suite():
 class ImClientTestCase(unittest.TestCase):
 
     def test_init_sets_config(self):
-        client = ImClient(KEY, KEY)
+        client = ImClient(KEY, SECRET)
         self.assertEqual(
             client.config,
             {

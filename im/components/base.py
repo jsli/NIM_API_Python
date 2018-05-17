@@ -7,6 +7,7 @@ from __future__ import absolute_import
 import hashlib
 import os
 import time
+import urllib
 
 from im import util
 
@@ -67,10 +68,10 @@ class BaseComponent(util.ApiClient):
         nonce = ''.join(map(lambda xx: (hex(ord(xx))[2:]), os.urandom(16)))
 
         # 当前UTC时间戳，从1970年1月1日0点0 分0 秒开始到现在的秒数(String)
-        curtime = int(time.time())
+        curtime = str(int(time.time()))
 
         # SHA1(AppSecret + Nonce + CurTime),三个参数拼接的字符串，进行SHA1哈希计算，转化成16进制字符(String，小写)
-        sha = hashlib.sha1('%s%s%s' % (api_key, nonce, curtime))
+        sha = hashlib.sha1('%s%s%s' % (self.config['api_secret'], nonce, curtime))
         checksum = sha.hexdigest()
 
         return {

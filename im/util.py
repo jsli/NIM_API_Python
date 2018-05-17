@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 
 import contextlib
-import json
+
 import requests
 
 __author__ = "Patrick R. Schmid"
@@ -91,8 +91,6 @@ class ApiClient(object):
         :param cookies: request cookies
         :return: The :class:``requests.Response`` object for this request
         """
-        if data and not is_str_type(data):
-            data = json.dumps(data)
         return requests.post(
             self.url_for(endpoint),
             params=params,
@@ -113,8 +111,6 @@ class ApiClient(object):
         :param cookies: request cookies
         :return: The :class:``requests.Response`` object for this request
         """
-        if data and not is_str_type(data):
-            data = json.dumps(data)
         return requests.patch(
             self.url_for(endpoint),
             params=params,
@@ -135,8 +131,6 @@ class ApiClient(object):
         :param cookies: request cookies
         :return: The :class:``requests.Response`` object for this request
         """
-        if data and not is_str_type(data):
-            data = json.dumps(data)
         return requests.put(
             self.url_for(endpoint),
             params=params,
@@ -157,8 +151,6 @@ class ApiClient(object):
         :param cookies: request cookies
         :return: The :class:``requests.Response`` object for this request
         """
-        if data and not is_str_type(data):
-            data = json.dumps(data)
         return requests.delete(
             self.url_for(endpoint),
             params=params,
