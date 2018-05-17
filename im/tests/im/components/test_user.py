@@ -6,8 +6,6 @@ __email__ = "manson.li3307@gmail.com"
 
 import unittest
 
-from mock import patch
-
 from im import ImClient
 from im import components
 
