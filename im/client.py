@@ -82,3 +82,33 @@ class ImClient(util.ApiClient):
     def user(self):
         """Get the user component"""
         return self.components.get('user')
+
+    @property
+    def friend(self):
+        """Get the friend component"""
+        return self.components.get('friend')
+
+    @property
+    def message(self):
+        """Get the message component"""
+        return self.components.get('message')
+
+    @property
+    def team(self):
+        """Get the team component"""
+        return self.components.get('team')
+
+    @property
+    def chatroom(self):
+        """Get the chatroom component"""
+        return self.components.get('chatroom')
+
+    @property
+    def history(self):
+        """Get the history component"""
+        return self.components.get('history')
+
+    @property
+    def event(self):
+        """Get the event component"""
+        return self.components.get('event')
