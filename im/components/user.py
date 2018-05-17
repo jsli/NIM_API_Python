@@ -81,3 +81,17 @@ class UserComponent(base.BaseComponent):
             kwargs['donnopOpen'] = 'true' if kwargs['donnopOpen'] else 'false'
 
         return self.post_request('/user/setDonnop.action', data=kwargs)
+
+    def set_special_relation(self, **kwargs):
+        """
+        拉黑/取消拉黑；设置静音/取消静音
+        """
+        util.require_keys(kwargs, ['accid', 'targetAcc', 'relationType', 'value'])
+        return self.post_request('/user/setSpecialRelation.action', data=kwargs)
+
+    def list_black_and_mute(self, **kwargs):
+        """
+        查看指定用户的黑名单和静音列表
+        """
+        util.require_keys(kwargs, 'accid')
+        return self.post_request('/user/listBlackAndMuteList.action', data=kwargs)

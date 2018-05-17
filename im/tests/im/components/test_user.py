@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from im.constants.params import *
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -99,6 +99,25 @@ class CreateTestCase(unittest.TestCase):
         res = client.user.set_donnop(**{
             'accid': 'jingyuxiaoban_accid',
             'donnopOpen': True
+        }).json()
+        print res
+        self.assertEqual(res['code'], 200)
+
+    def test_can_set_special_relation(self):
+        client = ImClient(KEY, SECRET)
+        res = client.user.set_special_relation(**{
+            'accid': 'jingyuxiaoban_accid',
+            'targetAcc': 'jingyuxiaoban_accid1',
+            'relationType': RELATION_TYPE_BLACK,
+            'value': OP_VALUE_ADD
+        }).json()
+        print res
+        self.assertEqual(res['code'], 200)
+
+    def test_can_list_black_and_mute(self):
+        client = ImClient(KEY, SECRET)
+        res = client.user.list_black_and_mute(**{
+            'accid': 'jingyuxiaoban_accid',
         }).json()
         print res
         self.assertEqual(res['code'], 200)

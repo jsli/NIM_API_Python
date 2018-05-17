@@ -42,17 +42,3 @@ class FriendComponent(base.BaseComponent):
         """
         util.require_keys(kwargs, ['accid', 'updatetime'])
         return self.post_request('/friend/get.action', data=kwargs)
-
-    def set_special_relation(self, **kwargs):
-        """
-        拉黑/取消拉黑；设置静音/取消静音
-        """
-        util.require_keys(kwargs, ['accid', 'targetAcc', 'relationType', 'value'])
-        return self.post_request('/friend/setSpecialRelation.action', data=kwargs)
-
-    def list_black_and_mute(self, **kwargs):
-        """
-        查看指定用户的黑名单和静音列表
-        """
-        util.require_keys(kwargs, 'accid')
-        return self.post_request('/friend/listBlackAndMuteList.action', data=kwargs)
