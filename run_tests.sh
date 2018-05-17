@@ -2,5 +2,5 @@
 
 source venv/bin/activate
 
-nosetests -v
+nosetests -v -s
 

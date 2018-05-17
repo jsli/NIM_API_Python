@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import json
+
 from im import util
 from im.components import base
-
+from im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -61,7 +63,12 @@ class UserComponent(base.BaseComponent):
         """
         获取用户名片
         """
-        util.require_keys(kwargs, 'accid')
+        util.require_keys(kwargs, 'accids')
+
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if kwargs['accids'] and not is_str_type(kwargs['accids']):
+            kwargs['accids'] = json.dumps(kwargs['accids'])
+
         return self.post_request('/user/getUinfos.action', data=kwargs)
 
     def set_donnop(self, **kwargs):
@@ -69,4 +76,8 @@ class UserComponent(base.BaseComponent):
         设置桌面端在线时，移动端是否需要推送
         """
         util.require_keys(kwargs, ['accid', 'donnopOpen'])
+
+        if kwargs['donnopOpen'] and not isinstance(kwargs['donnopOpen'], bool):
+            kwargs['donnopOpen'] = 'true' if kwargs['donnopOpen'] else 'false'
+
         return self.post_request('/user/setDonnop.action', data=kwargs)
