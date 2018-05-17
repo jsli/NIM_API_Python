@@ -9,8 +9,8 @@ Installation
 ### The developer way
 
 ```sh
-git clone git@github.com:jsli/zoomus.git
-cd zoomus
+git clone https://github.com/jsli/NIM_SDK_Python.git
+cd NIM_SDK_Python
 git checkout -b develop origin/develop
 python setup.py install
 ```

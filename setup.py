@@ -25,20 +25,20 @@ def find_version(file_paths):
     raise RuntimeError("Unable to find version string.")
 
 
-description = 'Python client library for Zoom.us REST API v1&v2'
+description = 'Python client library for NIM REST API'
 long_description = read('README.md', default=description)
 
 setup(
-    name='zoomus',
-    version=find_version(['zoomus', '__init__.py']),
-    url='http://github.com/jsli/zoomus/',
-    license='Apache Software License',
-    author='Patrick R. Schmid, Manson Li',
+    name='NIM_SDK_Python',
+    version=find_version(['im', '__init__.py']),
+    url='http://github.com/jsli/NIM_SDK_Python/',
+    license='MIT License',
+    author='Manson Li',
     install_requires=['requests'],
-    author_email='prschmid@act.md, manson.li3307@gmail.com',
+    author_email='manson.li3307@gmail.com',
     description=description,
     long_description=long_description,
-    packages=['zoomus', 'zoomus.components', 'zoomus.components_v2'],
+    packages=['im', 'im.components', 'im.constants', 'im.receiver'],
     include_package_data=True,
     platforms='any',
     zip_safe=False,
@@ -47,10 +47,10 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
         'Development Status :: 4 - Beta',
-        'Natural Language :: English',
+        'Natural Language :: Chinese',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Topic :: Internet',
         'Topic :: Office/Business',
