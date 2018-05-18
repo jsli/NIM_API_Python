@@ -55,3 +55,10 @@ TEAM_MUTE_TYPE_ALL = 3  # 禁言整个群(包括群主)
 EVENT_TYPE_SUBSCRIBE = 1  # 事件类型, 订阅指定人员的在线状态事件，固定设置为1
 
 SUBSCRIBE_TTL_30_DAYS = 2592000  # 有效期，单位：秒。取值范围：60～2592000（即60秒到30天）
+
+HISTORY_QUERY_REVERSE_ASE = 1  # 历史消息查询 按时间正序排列
+HISTORY_QUERY_REVERSE_DESC = 2  # 按时间降序排列
+
+HISTORY_QUERY_TYPE_ALL = 1  # 所有
+HISTORY_QUERY_TYPE_OFFLINE = 2  # 离线
+HISTORY_QUERY_TYPE_NO_OFFLINE = 3  # 非离线

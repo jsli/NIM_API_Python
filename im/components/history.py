@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import json
+
 from im import util
 from im.components import base
-
+from im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -20,6 +22,11 @@ class HistoryComponent(base.BaseComponent):
         单聊云端历史消息查询
         """
         util.require_keys(kwargs, ['from', 'to', 'begintime', 'endtime', 'limit'])
+        if 'type' in kwargs and not is_str_type(kwargs['type']):
+            tmp = []
+            for i in kwargs['type']:
+                tmp.append(str(i))
+            kwargs['type'] = ','.join(tmp)
         return self.post_request('/history/querySessionMsg.action', data=kwargs)
 
     def query_team_msg(self, **kwargs):
@@ -35,13 +42,6 @@ class HistoryComponent(base.BaseComponent):
         """
         util.require_keys(kwargs, ['roomid', 'accid', 'timetag', 'limit'])
         return self.post_request('/history/queryChatroomMsg.action', data=kwargs)
-
-    def delete_history_msg(self, **kwargs):
-        """
-        删除聊天室云端历史消息
-        """
-        util.require_keys(kwargs, ['roomid', 'fromAcc', 'msgTimetag'])
-        return self.post_request('/history/deleteHistoryMessage.action', data=kwargs)
 
     def query_user_events(self, **kwargs):
         """

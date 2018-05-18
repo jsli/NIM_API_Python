@@ -161,5 +161,9 @@ class ChatroomComponent(base.BaseComponent):
         util.require_keys(kwargs, ['roomid', 'accids'])
         return self.post_request('/chatroom/queryMembers.action', data=kwargs)
 
-
-
+    def delete_history_msg(self, **kwargs):
+        """
+        删除聊天室云端历史消息
+        """
+        util.require_keys(kwargs, ['roomid', 'fromAcc', 'msgTimetag'])
+        return self.post_request('/chatroom/deleteHistoryMessage.action', data=kwargs)
