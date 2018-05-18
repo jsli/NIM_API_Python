@@ -51,3 +51,7 @@ TEAM_MEMBER_UN_MUTE = 0  # 解禁
 TEAM_MUTE_TYPE_UN_MUTE = 0  # 解除禁言
 TEAM_MUTE_TYPE_MEMBERS_ONLY = 1  # 禁言普通成员
 TEAM_MUTE_TYPE_ALL = 3  # 禁言整个群(包括群主)
+
+EVENT_TYPE_SUBSCRIBE = 1  # 事件类型, 订阅指定人员的在线状态事件，固定设置为1
+
+SUBSCRIBE_TTL_30_DAYS = 2592000  # 有效期，单位：秒。取值范围：60～2592000（即60秒到30天）

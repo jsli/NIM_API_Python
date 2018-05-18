@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import json
+
 from im import util
 from im.components import base
-
+from im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -20,6 +22,8 @@ class EventComponent(base.BaseComponent):
         订阅在线状态事件
         """
         util.require_keys(kwargs, ['accid', 'eventType', 'publisherAccids', 'ttl'])
+        if not is_str_type(kwargs['publisherAccids']):
+            kwargs['publisherAccids'] = json.dumps(kwargs['publisherAccids'])
         return self.post_request('/event/subscribe/add.action', data=kwargs)
 
     def subscribe_delete(self, **kwargs):
@@ -27,6 +31,8 @@ class EventComponent(base.BaseComponent):
         取消在线状态事件订阅
         """
         util.require_keys(kwargs, ['accid', 'eventType', 'publisherAccids'])
+        if not is_str_type(kwargs['publisherAccids']):
+            kwargs['publisherAccids'] = json.dumps(kwargs['publisherAccids'])
         return self.post_request('/event/subscribe/delete.action', data=kwargs)
 
     def subscribe_batch_delete(self, **kwargs):
