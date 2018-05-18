@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import json
+
 from im import util
 from im.components import base
-
+from im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -15,7 +17,7 @@ __email__ = "manson.li3307@gmail.com"
 class ChatroomComponent(base.BaseComponent):
     """Component dealing with all user related matters"""
 
-    def query_session_msg(self, **kwargs):
+    def create(self, **kwargs):
         """
         创建聊天室
         """
@@ -34,6 +36,9 @@ class ChatroomComponent(base.BaseComponent):
         批量查询聊天室信息
         """
         util.require_keys(kwargs, ['roomids'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['roomids']):
+            kwargs['roomids'] = json.dumps(kwargs['roomids'])
         return self.post_request('/chatroom/getBatch.action', data=kwargs)
 
     def update(self, **kwargs):
@@ -83,6 +88,9 @@ class ChatroomComponent(base.BaseComponent):
         往聊天室内添加机器人
         """
         util.require_keys(kwargs, ['roomid', 'accids'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['accids']):
+            kwargs['accids'] = json.dumps(kwargs['accids'])
         return self.post_request('/chatroom/addRobot.action', data=kwargs)
 
     def remove_robot(self, **kwargs):
@@ -90,6 +98,9 @@ class ChatroomComponent(base.BaseComponent):
         从聊天室内删除机器人
         """
         util.require_keys(kwargs, ['roomid', 'accids'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['accids']):
+            kwargs['accids'] = json.dumps(kwargs['accids'])
         return self.post_request('/chatroom/removeRobot.action', data=kwargs)
 
     def temporary_mute(self, **kwargs):
@@ -129,7 +140,7 @@ class ChatroomComponent(base.BaseComponent):
 
     def queue_init(self, **kwargs):
         """
-        删除清理整个队列
+        初始化队列
         """
         util.require_keys(kwargs, ['roomid', 'sizeLimit'])
         return self.post_request('/chatroom/queueInit.action', data=kwargs)
@@ -145,7 +156,7 @@ class ChatroomComponent(base.BaseComponent):
         """
         查询聊天室统计指标TopN
         """
-        return self.post_request('/chatroom/topn.action', data=kwargs)
+        return self.post_request('/stats/chatroom/topn.action', data=kwargs)
 
     def members_by_page(self, **kwargs):
         """
@@ -159,6 +170,9 @@ class ChatroomComponent(base.BaseComponent):
         批量获取在线成员信息
         """
         util.require_keys(kwargs, ['roomid', 'accids'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['accids']):
+            kwargs['accids'] = json.dumps(kwargs['accids'])
         return self.post_request('/chatroom/queryMembers.action', data=kwargs)
 
     def delete_history_msg(self, **kwargs):
