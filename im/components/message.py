@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import json
+
 from im import util
 from im.components import base
-
+from im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -20,6 +22,9 @@ class MessageComponent(base.BaseComponent):
         发送普通消息
         """
         util.require_keys(kwargs, ['from', 'ope', 'to', 'type', 'body'])
+        # JSON串，如：{"msg":"hello"}
+        if not is_str_type(kwargs['body']):
+            kwargs['body'] = json.dumps(kwargs['body'])
         return self.post_request('/msg/sendMsg.action', data=kwargs)
 
     def send_batch_msg(self, **kwargs):
@@ -27,6 +32,14 @@ class MessageComponent(base.BaseComponent):
         批量发送点对点普通消息
         """
         util.require_keys(kwargs, ['fromAccid', 'toAccids', 'type', 'body'])
+
+        # JSON串，如：{"msg":"hello"}
+        if not is_str_type(kwargs['body']):
+            kwargs['body'] = json.dumps(kwargs['body'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['toAccids']):
+            kwargs['toAccids'] = json.dumps(kwargs['toAccids'])
+
         return self.post_request('/msg/sendBatchMsg.action', data=kwargs)
 
     def send_attach_msg(self, **kwargs):
@@ -34,6 +47,9 @@ class MessageComponent(base.BaseComponent):
         发送自定义系统通知
         """
         util.require_keys(kwargs, ['from', 'msgtype', 'to', 'attach'])
+        # JSON串，如：{"msg":"hello"}
+        if not is_str_type(kwargs['attach']):
+            kwargs['attach'] = json.dumps(kwargs['attach'])
         return self.post_request('/msg/sendAttachMsg.action', data=kwargs)
 
     def send_batch_attach_msg(self, **kwargs):
@@ -41,6 +57,14 @@ class MessageComponent(base.BaseComponent):
         批量发送点对点自定义系统通知
         """
         util.require_keys(kwargs, ['fromAccid', 'toAccids', 'attach'])
+
+        # JSON串，如：{"msg":"hello"}
+        if not is_str_type(kwargs['attach']):
+            kwargs['attach'] = json.dumps(kwargs['attach'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['toAccids']):
+            kwargs['toAccids'] = json.dumps(kwargs['toAccids'])
+
         return self.post_request('/msg/sendBatchAttachMsg.action', data=kwargs)
 
     def upload(self, **kwargs):
@@ -55,13 +79,13 @@ class MessageComponent(base.BaseComponent):
         文件上传（multipart方式）
         """
         # TODO:
-        pass
+        raise NotImplementedError(u'暂不支持multipart方式上传')
 
     def recall(self, **kwargs):
         """
         消息撤回
         """
-        util.require_keys(kwargs, ['deleteMsgid', 'timetag', 'type', 'from', 'to', 'msg', 'ignoreTime'])
+        util.require_keys(kwargs, ['deleteMsgid', 'timetag', 'type', 'from', 'to'])
         return self.post_request('/msg/recall.action', data=kwargs)
 
     def broadcast_msg(self, **kwargs):
@@ -69,4 +93,7 @@ class MessageComponent(base.BaseComponent):
         发送广播消息
         """
         util.require_keys(kwargs, 'body')
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if 'targetOs' in kwargs and not is_str_type(kwargs['targetOs']):
+            kwargs['targetOs'] = json.dumps(kwargs['targetOs'])
         return self.post_request('/msg/broadcastMsg.action', data=kwargs)

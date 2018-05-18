@@ -66,7 +66,7 @@ class UserComponent(base.BaseComponent):
         util.require_keys(kwargs, 'accids')
 
         # JSONArray对应的accid串，如：["zhangsan"]
-        if kwargs['accids'] and not is_str_type(kwargs['accids']):
+        if not is_str_type(kwargs['accids']):
             kwargs['accids'] = json.dumps(kwargs['accids'])
 
         return self.post_request('/user/getUinfos.action', data=kwargs)
@@ -77,7 +77,7 @@ class UserComponent(base.BaseComponent):
         """
         util.require_keys(kwargs, ['accid', 'donnopOpen'])
 
-        if kwargs['donnopOpen'] and not isinstance(kwargs['donnopOpen'], bool):
+        if not isinstance(kwargs['donnopOpen'], bool):
             kwargs['donnopOpen'] = 'true' if kwargs['donnopOpen'] else 'false'
 
         return self.post_request('/user/setDonnop.action', data=kwargs)
