@@ -7,7 +7,6 @@ from __future__ import absolute_import
 import hashlib
 import os
 import time
-import urllib
 
 from im import util
 
@@ -50,6 +49,10 @@ class BaseComponent(util.ApiClient):
         # 增加公共header
         headers = headers or {}
         headers.update(self.im_header())
+        if 'Content-Type' not in headers:
+            headers.update({
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            })
 
         return super(BaseComponent, self).post_request(
             endpoint, params=params, data=data, headers=headers,
@@ -79,5 +82,4 @@ class BaseComponent(util.ApiClient):
             'Nonce': nonce,
             'CurTime': curtime,
             'CheckSum': checksum,
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }

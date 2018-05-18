@@ -92,6 +92,14 @@ class CreateTestCase(unittest.TestCase):
         print res
         self.assertEqual(res['code'], 200)
 
+    def test_can_upload_file(self):
+        client = ImClient(KEY, SECRET)
+        res = client.message.upload_file(**{
+            'content': 'xxfewfewxx',
+        }).json()
+        print res
+        self.assertEqual(res['code'], 200)
+
     def test_can_recall(self):
         client = ImClient(KEY, SECRET)
         res = client.message.recall(**{

@@ -78,8 +78,11 @@ class MessageComponent(base.BaseComponent):
         """
         文件上传（multipart方式）
         """
-        # TODO:
-        raise NotImplementedError(u'暂不支持multipart方式上传')
+        util.require_keys(kwargs, 'content', False)
+        headers = {
+            'Content-Type': 'multipart/form-data;charset=utf-8;'
+        }
+        return self.post_request('/msg/fileUpload.action', data=kwargs, headers=headers)
 
     def recall(self, **kwargs):
         """

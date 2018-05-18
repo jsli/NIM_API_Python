@@ -4,8 +4,6 @@
 
 from __future__ import absolute_import
 
-import json
-
 from im import util
 from im.components import base
 from im.util import is_str_type
