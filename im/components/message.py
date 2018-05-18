@@ -78,11 +78,8 @@ class MessageComponent(base.BaseComponent):
         """
         文件上传（multipart方式）
         """
-        util.require_keys(kwargs, 'content', False)
-        headers = {
-            'Content-Type': 'multipart/form-data;charset=utf-8;'
-        }
-        return self.post_request('/msg/fileUpload.action', data=kwargs, headers=headers)
+        print u'暂不支持multipart方式上传, 转换为普通文件上传'
+        return self.upload(**kwargs)
 
     def recall(self, **kwargs):
         """
