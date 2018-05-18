@@ -4,9 +4,11 @@
 
 from __future__ import absolute_import
 
+import json
+
 from im import util
 from im.components import base
-
+from im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
@@ -20,6 +22,9 @@ class TeamComponent(base.BaseComponent):
         创建群
         """
         util.require_keys(kwargs, ['tname', 'owner', 'members', 'msg', 'magree', 'joinmode'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['members']):
+            kwargs['members'] = json.dumps(kwargs['members'])
         return self.post_request('/team/create.action', data=kwargs)
 
     def add(self, **kwargs):
@@ -27,13 +32,22 @@ class TeamComponent(base.BaseComponent):
         拉人入群
         """
         util.require_keys(kwargs, ['tid', 'owner', 'members', 'msg', 'magree'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['members']):
+            kwargs['members'] = json.dumps(kwargs['members'])
         return self.post_request('/team/add.action', data=kwargs)
 
     def kick(self, **kwargs):
         """
         踢人出群
         """
-        util.require_keys(kwargs, ['tid', 'owner', 'member'])
+        util.require_keys(kwargs, ['tid', 'owner'])
+
+        if 'member' not in kwargs and 'members' not in kwargs:
+            raise ValueError("either 'member' or 'members' must be set")
+        if 'members' in kwargs and not is_str_type(kwargs['members']):
+            kwargs['members'] = json.dumps(kwargs['members'])
+
         return self.post_request('/team/kick.action', data=kwargs)
 
     def remove(self, **kwargs):
@@ -55,6 +69,9 @@ class TeamComponent(base.BaseComponent):
         群信息与成员列表查询
         """
         util.require_keys(kwargs, ['tids', 'ope'])
+        # JSONArray对应的accid串，如：["zhangsan"]
+        if not is_str_type(kwargs['tids']):
+            kwargs['tids'] = json.dumps(kwargs['tids'])
         return self.post_request('/team/query.action', data=kwargs)
 
     def query_detail(self, **kwargs):
@@ -83,6 +100,8 @@ class TeamComponent(base.BaseComponent):
         任命管理员
         """
         util.require_keys(kwargs, ['tid', 'owner', 'members'])
+        if not is_str_type(kwargs['members']):
+            kwargs['members'] = json.dumps(kwargs['members'])
         return self.post_request('/team/addManager.action', data=kwargs)
 
     def remove_manager(self, **kwargs):
@@ -90,6 +109,8 @@ class TeamComponent(base.BaseComponent):
         移除管理员
         """
         util.require_keys(kwargs, ['tid', 'owner', 'members'])
+        if not is_str_type(kwargs['members']):
+            kwargs['members'] = json.dumps(kwargs['members'])
         return self.post_request('/team/removeManager.action', data=kwargs)
 
     def join_teams(self, **kwargs):
@@ -118,7 +139,7 @@ class TeamComponent(base.BaseComponent):
         禁言群成员
         """
         util.require_keys(kwargs, ['tid', 'owner', 'accid', 'mute'])
-        return self.post_request('/team/muteTeam.action', data=kwargs)
+        return self.post_request('/team/muteTlist.action', data=kwargs)
 
     def leave(self, **kwargs):
         """
@@ -132,6 +153,8 @@ class TeamComponent(base.BaseComponent):
         将群组整体禁言
         """
         util.require_keys(kwargs, ['tid', 'owner'])
+        if 'mute' not in kwargs and 'muteType' not in kwargs:
+            raise ValueError("either 'mute' or 'muteType' must be set")
         return self.post_request('/team/muteTlistAll.action', data=kwargs)
 
     def list_team_mute(self, **kwargs):
