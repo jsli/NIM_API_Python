@@ -1,6 +1,6 @@
-# NIM_SDK_Python
+# NIM_API_Python
 
-网易云信SDK-python
+网易云信服务端API封装(python)
 
 
 Installation
@@ -9,8 +9,8 @@ Installation
 ### The developer way
 
 ```sh
-git clone https://github.com/jsli/NIM_SDK_Python.git
-cd NIM_SDK_Python
+git clone https://github.com/jsli/NIM_API_Python.git
+cd NIM_API_Python
 git checkout -b develop origin/develop
 python setup.py install
 ```
