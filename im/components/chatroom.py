@@ -21,21 +21,21 @@ class ChatroomComponent(base.BaseComponent):
         """
         创建聊天室
         """
-        util.require_keys(kwargs, ['creator', 'name'])
+        util.require_keys(kwargs, ['creator', 'name'], False)
         return self.post_request('/chatroom/create.action', data=kwargs)
 
     def get(self, **kwargs):
         """
         查询聊天室信息
         """
-        util.require_keys(kwargs, ['roomid'])
+        util.require_keys(kwargs, ['roomid'], False)
         return self.post_request('/chatroom/get.action', data=kwargs)
 
     def get_batch(self, **kwargs):
         """
         批量查询聊天室信息
         """
-        util.require_keys(kwargs, ['roomids'])
+        util.require_keys(kwargs, ['roomids'], False)
         # JSONArray对应的accid串，如：["zhangsan"]
         if not is_str_type(kwargs['roomids']):
             kwargs['roomids'] = json.dumps(kwargs['roomids'])
@@ -45,49 +45,49 @@ class ChatroomComponent(base.BaseComponent):
         """
         更新聊天室信息
         """
-        util.require_keys(kwargs, ['roomid'])
+        util.require_keys(kwargs, ['roomid'], False)
         return self.post_request('/chatroom/update.action', data=kwargs)
 
     def toggle_close_stat(self, **kwargs):
         """
         修改聊天室开/关闭状态
         """
-        util.require_keys(kwargs, ['roomid', 'operator', 'valid'])
+        util.require_keys(kwargs, ['roomid', 'operator', 'valid'], False)
         return self.post_request('/chatroom/toggleCloseStat.action', data=kwargs)
 
     def set_member_role(self, **kwargs):
         """
         设置聊天室内用户角色
         """
-        util.require_keys(kwargs, ['roomid', 'operator', 'target', 'opt', 'optvalue'])
+        util.require_keys(kwargs, ['roomid', 'operator', 'target', 'opt', 'optvalue'], False)
         return self.post_request('/chatroom/setMemberRole.action', data=kwargs)
 
     def update_my_room_role(self, **kwargs):
         """
         变更聊天室内的角色信息
         """
-        util.require_keys(kwargs, ['roomid', 'accid'])
+        util.require_keys(kwargs, ['roomid', 'accid'], False)
         return self.post_request('/chatroom/updateMyRoomRole.action', data=kwargs)
 
     def request_addr(self, **kwargs):
         """
         请求聊天室地址
         """
-        util.require_keys(kwargs, ['roomid', 'accid'])
+        util.require_keys(kwargs, ['roomid', 'accid'], False)
         return self.post_request('/chatroom/requestAddr.action', data=kwargs)
 
     def send_msg(self, **kwargs):
         """
         发送聊天室消息
         """
-        util.require_keys(kwargs, ['roomid', 'msgId', 'fromAccid', 'msgType'])
+        util.require_keys(kwargs, ['roomid', 'msgId', 'fromAccid', 'msgType'], False)
         return self.post_request('/chatroom/sendMsg.action', data=kwargs)
 
     def add_robot(self, **kwargs):
         """
         往聊天室内添加机器人
         """
-        util.require_keys(kwargs, ['roomid', 'accids'])
+        util.require_keys(kwargs, ['roomid', 'accids'], False)
         # JSONArray对应的accid串，如：["zhangsan"]
         if not is_str_type(kwargs['accids']):
             kwargs['accids'] = json.dumps(kwargs['accids'])
@@ -97,7 +97,7 @@ class ChatroomComponent(base.BaseComponent):
         """
         从聊天室内删除机器人
         """
-        util.require_keys(kwargs, ['roomid', 'accids'])
+        util.require_keys(kwargs, ['roomid', 'accids'], False)
         # JSONArray对应的accid串，如：["zhangsan"]
         if not is_str_type(kwargs['accids']):
             kwargs['accids'] = json.dumps(kwargs['accids'])
@@ -107,49 +107,49 @@ class ChatroomComponent(base.BaseComponent):
         """
         设置临时禁言状态
         """
-        util.require_keys(kwargs, ['roomid', 'operator', 'target', 'muteDuration'])
+        util.require_keys(kwargs, ['roomid', 'operator', 'target', 'muteDuration'], False)
         return self.post_request('/chatroom/temporaryMute.action', data=kwargs)
 
     def queue_offer(self, **kwargs):
         """
         往聊天室有序队列中新加或更新元素
         """
-        util.require_keys(kwargs, ['roomid', 'key', 'value'])
+        util.require_keys(kwargs, ['roomid', 'key', 'value'], False)
         return self.post_request('/chatroom/queueOffer.action', data=kwargs)
 
     def queue_poll(self, **kwargs):
         """
         从队列中取出元素
         """
-        util.require_keys(kwargs, ['roomid'])
+        util.require_keys(kwargs, ['roomid'], False)
         return self.post_request('/chatroom/queuePoll.action', data=kwargs)
 
     def queue_list(self, **kwargs):
         """
         排序列出队列中所有元素
         """
-        util.require_keys(kwargs, ['roomid'])
+        util.require_keys(kwargs, ['roomid'], False)
         return self.post_request('/chatroom/queueList.action', data=kwargs)
 
     def queue_drop(self, **kwargs):
         """
         删除清理整个队列
         """
-        util.require_keys(kwargs, ['roomid'])
+        util.require_keys(kwargs, ['roomid'], False)
         return self.post_request('/chatroom/queueDrop.action', data=kwargs)
 
     def queue_init(self, **kwargs):
         """
         初始化队列
         """
-        util.require_keys(kwargs, ['roomid', 'sizeLimit'])
+        util.require_keys(kwargs, ['roomid', 'sizeLimit'], False)
         return self.post_request('/chatroom/queueInit.action', data=kwargs)
 
     def mute_room(self, **kwargs):
         """
         将聊天室整体禁言
         """
-        util.require_keys(kwargs, ['roomid', 'operator', 'mute'])
+        util.require_keys(kwargs, ['roomid', 'operator', 'mute'], False)
         return self.post_request('/chatroom/muteRoom.action', data=kwargs)
 
     def topn(self, **kwargs):
@@ -162,14 +162,14 @@ class ChatroomComponent(base.BaseComponent):
         """
         分页获取成员列表
         """
-        util.require_keys(kwargs, ['roomid', 'type', 'endtime', 'limit'])
+        util.require_keys(kwargs, ['roomid', 'type', 'endtime', 'limit'], False)
         return self.post_request('/chatroom/membersByPage.action', data=kwargs)
 
     def query_members(self, **kwargs):
         """
         批量获取在线成员信息
         """
-        util.require_keys(kwargs, ['roomid', 'accids'])
+        util.require_keys(kwargs, ['roomid', 'accids'], False)
         # JSONArray对应的accid串，如：["zhangsan"]
         if not is_str_type(kwargs['accids']):
             kwargs['accids'] = json.dumps(kwargs['accids'])
@@ -179,5 +179,5 @@ class ChatroomComponent(base.BaseComponent):
         """
         删除聊天室云端历史消息
         """
-        util.require_keys(kwargs, ['roomid', 'fromAcc', 'msgTimetag'])
+        util.require_keys(kwargs, ['roomid', 'fromAcc', 'msgTimetag'], False)
         return self.post_request('/chatroom/deleteHistoryMessage.action', data=kwargs)

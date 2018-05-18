@@ -21,7 +21,7 @@ class MessageComponent(base.BaseComponent):
         """
         发送普通消息
         """
-        util.require_keys(kwargs, ['from', 'ope', 'to', 'type', 'body'])
+        util.require_keys(kwargs, ['from', 'ope', 'to', 'type', 'body'], False)
         # JSON串，如：{"msg":"hello"}
         if not is_str_type(kwargs['body']):
             kwargs['body'] = json.dumps(kwargs['body'])
@@ -31,7 +31,7 @@ class MessageComponent(base.BaseComponent):
         """
         批量发送点对点普通消息
         """
-        util.require_keys(kwargs, ['fromAccid', 'toAccids', 'type', 'body'])
+        util.require_keys(kwargs, ['fromAccid', 'toAccids', 'type', 'body'], False)
 
         # JSON串，如：{"msg":"hello"}
         if not is_str_type(kwargs['body']):
@@ -46,7 +46,7 @@ class MessageComponent(base.BaseComponent):
         """
         发送自定义系统通知
         """
-        util.require_keys(kwargs, ['from', 'msgtype', 'to', 'attach'])
+        util.require_keys(kwargs, ['from', 'msgtype', 'to', 'attach'], False)
         # JSON串，如：{"msg":"hello"}
         if not is_str_type(kwargs['attach']):
             kwargs['attach'] = json.dumps(kwargs['attach'])
@@ -56,7 +56,7 @@ class MessageComponent(base.BaseComponent):
         """
         批量发送点对点自定义系统通知
         """
-        util.require_keys(kwargs, ['fromAccid', 'toAccids', 'attach'])
+        util.require_keys(kwargs, ['fromAccid', 'toAccids', 'attach'], False)
 
         # JSON串，如：{"msg":"hello"}
         if not is_str_type(kwargs['attach']):
@@ -71,7 +71,7 @@ class MessageComponent(base.BaseComponent):
         """
         文件上传
         """
-        util.require_keys(kwargs, 'content')
+        util.require_keys(kwargs, 'content', False)
         return self.post_request('/msg/upload.action', data=kwargs)
 
     def upload_file(self, **kwargs):
@@ -85,14 +85,14 @@ class MessageComponent(base.BaseComponent):
         """
         消息撤回
         """
-        util.require_keys(kwargs, ['deleteMsgid', 'timetag', 'type', 'from', 'to'])
+        util.require_keys(kwargs, ['deleteMsgid', 'timetag', 'type', 'from', 'to'], False)
         return self.post_request('/msg/recall.action', data=kwargs)
 
     def broadcast_msg(self, **kwargs):
         """
         发送广播消息
         """
-        util.require_keys(kwargs, 'body')
+        util.require_keys(kwargs, 'body', False)
         # JSONArray对应的accid串，如：["zhangsan"]
         if 'targetOs' in kwargs and not is_str_type(kwargs['targetOs']):
             kwargs['targetOs'] = json.dumps(kwargs['targetOs'])
