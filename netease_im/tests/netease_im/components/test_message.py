@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from im.constants.params import *
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"
 
 import unittest
 
-from im import ImClient
-from im import components
+from netease_im import ImClient
+from netease_im import components
+from netease_im.constants.params import *
 
 KEY = '271f99c2ad5a414459fc02071eb1e405'
 SECRET = 'a44cfdc61f29'

@@ -8,7 +8,7 @@ import hashlib
 import os
 import time
 
-from im import util
+from netease_im import util
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"

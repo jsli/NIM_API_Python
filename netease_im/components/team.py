@@ -6,9 +6,9 @@ from __future__ import absolute_import
 
 import json
 
-from im import util
-from im.components import base
-from im.util import is_str_type
+from netease_im import util
+from netease_im.components import base
+from netease_im.util import is_str_type
 
 __author__ = "Manson Li"
 __email__ = "manson.li3307@gmail.com"

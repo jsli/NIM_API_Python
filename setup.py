@@ -30,15 +30,15 @@ long_description = read('README.md', default=description)
 
 setup(
     name='NIM_SDK_Python',
-    version=find_version(['im', '__init__.py']),
+    version=find_version(['netease-im', '__init__.py']),
     url='http://github.com/jsli/NIM_SDK_Python/',
-    license='MIT License',
+    license='MIT',
     author='Manson Li',
     install_requires=['requests'],
     author_email='manson.li3307@gmail.com',
     description=description,
     long_description=long_description,
-    packages=['im', 'im.components', 'im.constants'],
+    packages=['netease-im', 'netease-im.components', 'netease-im.constants'],
     include_package_data=True,
     platforms='any',
     zip_safe=False,

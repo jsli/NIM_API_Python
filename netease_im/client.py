@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import
 
-from im import (
+from netease_im import (
     components,
     util,
 )

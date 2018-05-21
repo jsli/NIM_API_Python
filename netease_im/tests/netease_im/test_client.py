@@ -5,7 +5,7 @@ __email__ = "manson.li3307@gmail.com"
 
 import unittest
 
-from im import (
+from netease_im import (
     components,
     ImClient)
 

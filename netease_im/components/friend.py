@@ -4,8 +4,8 @@
 
 from __future__ import absolute_import
 
-from im import util
-from im.components import base
+from netease_im import util
+from netease_im.components import base
 
 
 __author__ = "Manson Li"
