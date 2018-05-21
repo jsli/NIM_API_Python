@@ -12,6 +12,12 @@
 Installation
 ------------
 
+### The production way
+
+```sh
+pip install NIM-API-Python
+```
+
 ### The developer way
 
 ```sh
@@ -24,7 +30,7 @@ python setup.py install
 Compatability
 -------------
 
-Zoomus has been tested for Python 2.6, 3.2, 3.3, 3.4, and pypy using [Travis CI](https://travis-ci.org/actmd/zoomus)
+NIM-API-Python has been tested for Python 2.6, 3.2, 3.3, 3.4, and pypy using [Travis CI](https://travis-ci.org/jsli/NIM_API_Python)
 
 Example Usage
 -------------
