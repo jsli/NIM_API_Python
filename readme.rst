@@ -27,6 +27,12 @@
 Installation
 ------------
 
+### The prod way
+
+```sh
+pip install NIM_API_Python
+```
+
 ### The developer way
 
 ```sh

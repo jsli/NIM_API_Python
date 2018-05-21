@@ -31,7 +31,7 @@ long_description = read('README.md', default=description)
 setup(
     name='NIM_SDK_Python',
     version=find_version(['netease_im', '__init__.py']),
-    url='http://github.com/jsli/NIM_SDK_Python/',
+    url='http://github.com/jsli/NIM_API_Python/',
     license='MIT',
     author='Manson Li',
     install_requires=['requests'],
