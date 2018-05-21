@@ -29,7 +29,7 @@ description = 'Python client library for NIM REST API'
 long_description = read('README.md', default=description)
 
 setup(
-    name='NIM_SDK_Python',
+    name='NIM_API_Python',
     version=find_version(['netease_im', '__init__.py']),
     url='http://github.com/jsli/NIM_API_Python/',
     license='MIT',
