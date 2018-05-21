@@ -6,4 +6,4 @@ from __future__ import (
 
 from netease_im.client import ImClient
 
-__version__ = '0.1.1'
+__version__ = '0.1.0'
