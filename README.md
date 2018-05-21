@@ -2,6 +2,12 @@
 
 网易云信服务端API封装(python)
 
+[![](https://secure.travis-ci.org/jsli/NIM_API_Python.png?branch=master "Build Status")](http://travis-ci.org/jsli/NIM_API_Python)
+[![](https://pypip.in/py_versions/NIM_API_Python/badge.svg "Supported Python versions")](https://pypi.python.org/pypi/NIM_API_Python/)
+[![](https://pypip.in/status/NIM_API_Python/badge.svg "Development Status")](https://pypi.python.org/pypi/NIM_API_Python/)
+[![](https://pypip.in/version/NIM_API_Python/badge.svg "Latest Version")](https://pypi.python.org/pypi/NIM_API_Python/)
+[![](https://pypip.in/license/NIM_API_Python/badge.svg "License")](https://pypi.python.org/pypi/NIM_API_Python/)
+
 
 Installation
 ------------
