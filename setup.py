@@ -38,7 +38,7 @@ setup(
     author_email='manson.li3307@gmail.com',
     description=description,
     long_description=long_description,
-    packages=['netease-im', 'netease-im.components', 'netease-im.constants'],
+    packages=['netease_im', 'netease_im.components', 'netease_im.constants'],
     include_package_data=True,
     platforms='any',
     zip_safe=False,
